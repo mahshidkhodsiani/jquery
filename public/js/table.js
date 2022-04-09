@@ -1,5 +1,9 @@
 
  $(document).ready(function(){
+
+    $("form").on("submit" , function(event){
+        event.preventDefault();
+    });
             
     var j=1;
     $(".submit").click(function(){
@@ -48,15 +52,8 @@
                  onclick: 'myFunction(\''+ m +'\')'
             });
 
-            $("form").append(btn);
-
-      
+        $("form").append(btn);
     });
-
-    $("form").on("submit" , function(event){
-     event.preventDefault();
-    });
-
 
 });
 
