@@ -1,7 +1,7 @@
 
  $(document).ready(function(){
 
-    $("form").on("submit" , function(event){
+    $("#form1").on("submit" , function(event){
         event.preventDefault();
     });
       
@@ -25,6 +25,12 @@
             M.toast({html: 'plaese enter correct email'});
             return;
         }
+
+        var ageReg = /[1-9]{2}/ ;
+        if (!ageReg.test (ageN)) {
+            M.toast({html: 'plaese enter correct age'});
+            return;
+        }
         
        
 
@@ -33,8 +39,8 @@
         row += "<td>" + lastN +"</td>";
         row += "<td>" + emailN +"</td>";
         row += "<td>" + ageN +"</td>";
-        row += "<td> <button class='delete waves-effect waves-light btn'> delete </button> </td>";
-        row += "<td> <button class='edit waves-effect waves-light btn'> edit </button> </td>";
+        row += "<td> <button class='delete waves-effect waves-light btn-small'> delete </button> </td>";
+        row += "<td> <button class='edit waves-effect waves-light btn-small'> edit </button> </td>";
         row += "</tr>";
 
         $("#myTable").append(row);
@@ -62,6 +68,8 @@
         $("#email").val(name3);
         $("#age").val(name4);
 
+        M.updateTextFields();
+
 
        
         $(".submit").prop("disabled", true);
@@ -69,24 +77,22 @@
 
         var m = $(this).parents("tr").attr("id");
 
-        var i = '<i class="material-icons">edit</i>' ;
-        var btn = $('<input/>').attr({
+
+        var btn = $('<a><i class="material-icons left">edit</i>edite</a>').attr({
                  class:"waves-effect waves-light btn",
-                 type: "submit",
                  id: "edite",
-                 value: "edite",
                  onclick: 'myFunction(\''+ m +'\')'
             });
         
         
-        $("form").append(i,btn);
+        $(".submit").after(btn);
         
 
         $(".delete").prop("disabled", true);
         $(".edit").prop("disabled", true);
         $("#"+ m).css("background-color", "coral");
 
-        $('label').css('display', 'none'); 
+
     });
 
 });
@@ -99,16 +105,22 @@ function myFunction(id){
     var email = $("#email").val();
     var age = $("#age").val();
 
-    if (first == "" || last == "" || email == "" ) {
+    if (first == "" || last == "" || email == "" || age == "") {
         M.toast({html: 'Enter all'});
         return ;
     }
 
    
     var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-    if( !emailReg.test( email ) ) {
-        M.toast({html: 'plaese enter correct email'});
-        return;
+        if( !emailReg.test( email ) ) {
+            M.toast({html: 'plaese enter correct email'});
+            return;
+    }
+
+    var ageReg = /[1-9]{2}/ ;
+        if (!ageReg.test (age)) {
+            M.toast({html: 'plaese enter correct age'});
+            return;
     }
 
     
@@ -131,8 +143,7 @@ function myFunction(id){
 
     $("#"+ id).css("background-color", "white");
 
-    $('label').show();
-
+   
 
    
 }

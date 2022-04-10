@@ -1,16 +1,5 @@
-/* table,tr,th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
-} */
 
-/* tr:hover {
-    background-color: coral;
-} */
-body{
-    background-color: rgb(126, 133, 119);
-}
 
-th {
-    font-size: 20px;
-    background-color: #557B83;
+#edite {
+    margin-left: 10px;
 }
